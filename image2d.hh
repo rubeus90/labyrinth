@@ -2,7 +2,8 @@
 # define IMAGE2D_HH
 
 #include "box2d.hh"
-#include "point2d.hh"
+// #include "point2d.hh"
+#include <vector>
 
 template <typename T>
 class image2d
@@ -12,18 +13,17 @@ public:
   typedef box2d domain_type;
   typedef typename domain_type::point_type point_type;
   typedef typename domain_type::p_iterator_type p_iterator_type;
-  typedef typename domain_type::n_iterator_type n_iterator_type;
+  //typedef typename domain_type::n_iterator_type n_iterator_type;
 
   template <typename U>
   struct width_value_type{
-  typedef image2d<U> ret;
+    typedef image2d<U> ret;
   };
 
   //Constructeurs
-/*
   image2d(const domain_type& domain){
     domain_ = domain;
-  }*/
+  }
   image2d(unsigned nrows, unsigned ncols){
     data_[nrows*ncols];
   }
