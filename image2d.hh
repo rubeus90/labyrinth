@@ -21,13 +21,14 @@ public:
   };
 
   //Constructeurs
-  image2d(const domain_type& domain){
-    domain_ = domain;
+  image2d(const domain_type& domain): domain_(domain) {
+    data_[(domain_.get_max().x_ - domain_.get_min().x_) * (domain_.get_max().y_ - domain_.get_min().y_)];
   }
-  image2d(unsigned nrows, unsigned ncols){
+
+  image2d(unsigned nrows, unsigned ncols) : domain_(point2d(0,0), point2d(nrows,ncols)) {
     data_[nrows*ncols];
   }
-/*
+
   //Acceder a la valeur du pixel
   T& operator()(const point_type& p){
     return data_[domain_.get_max().y_ * p.x_ + p.y_];
@@ -49,7 +50,7 @@ public:
       point2d p = i.point();
       image(p) = v;
     }
-  }*/
+  }
 
 private:
   domain_type domain_;
