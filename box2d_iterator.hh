@@ -6,7 +6,7 @@
 template <typename T>
 class box2d_iterator{
 public:
-	iterator(T& box){
+	box2d_iterator(T& box){
 		box_  = &box;
 		i_ = -1;
 	}
@@ -16,7 +16,7 @@ public:
 		y_ = box_->get_min().y_;
 	}
 	bool is_valid() const{
-		return (x_ <= box_->get_max().x_ && y_ <= box_->get_max().y_;
+		return (x_ <= box_->get_max().x_ && y_ <= box_->get_max().y_);
 	}
 	void next(){
 		i_++;

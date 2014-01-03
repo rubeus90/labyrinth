@@ -8,6 +8,11 @@ struct point2d{
 		x_ = x;
 		y_ = y;
 	}
+
+	point2d(){
+		x_ = 0;
+		y_ = 0;
+	}
 };
 
 #endif

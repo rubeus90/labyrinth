@@ -2,6 +2,7 @@
 # define IMAGE2D_HH
 
 #include "box2d.hh"
+#include "point2d.hh"
 
 template <typename T>
 class image2d
@@ -14,16 +15,19 @@ public:
   typedef typename domain_type::n_iterator_type n_iterator_type;
 
   template <typename U>
-  using with_value_type = image2d<U>;
+  struct width_value_type{
+  typedef image2d<U> ret;
+  };
 
   //Constructeurs
+/*
   image2d(const domain_type& domain){
     domain_ = domain;
-  }
+  }*/
   image2d(unsigned nrows, unsigned ncols){
     data_[nrows*ncols];
   }
-
+/*
   //Acceder a la valeur du pixel
   T& operator()(const point_type& p){
     return data_[domain_.get_max().y_ * p.x_ + p.y_];
@@ -38,14 +42,14 @@ public:
   }
 
   //Remplir l'image
-  template <typename T>
-  void fill2d(image2d<T>& image, const T& v){
-    box2d_iterator i(image.domain());
+  template <typename point2d>
+  void fill2d(image2d<point2d>& image, const T& v){
+    box2d_iterator<point2d> i(image.domain());
     for(i.start(); i.valid(); i.next()){
       point2d p = i.point();
       image(p) = v;
     }
-  }
+  }*/
 
 private:
   domain_type domain_;

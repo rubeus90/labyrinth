@@ -2,6 +2,7 @@
 #define BOX2D_HH
 
 #include "box2d_iterator.hh"
+#include "point2d.hh"
 
 class box2d{
 public:
@@ -14,8 +15,8 @@ public:
 	}
 
 	box2d(const box2d& b){
-		min_ = b.min();
-		max_ = b.max();
+		min_ = b.get_min();
+		max_ = b.get_max();
 	}
 
 	point2d get_min(){
