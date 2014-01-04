@@ -46,8 +46,8 @@ public:
   template <typename point2d>
   void fill2d(image2d<point2d>& image, const T& v){
     box2d_iterator<point2d> i(image.domain());
-    for(i.start(); i.valid(); i.next()){
-      point2d p = i.point();
+    for(i.start(); i.is_valid(); i.next()){
+      point2d p = i.point2d();
       image(p) = v;
     }
   }

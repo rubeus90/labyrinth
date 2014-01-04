@@ -9,15 +9,9 @@ public:
 	typedef point2d point_type;
 	typedef box2d_iterator<box2d> p_iterator_type;
 
-	box2d(const point2d& min, const point2d& max){
-		min_ = min;
-		max_ = max;
-	}
+	box2d(const point2d& min, const point2d& max): min_(min), max_(max){}
 
-	box2d(const box2d& b){
-		min_ = b.get_min();
-		max_ = b.get_max();
-	}
+	box2d(const box2d& b): min_(b.get_min()), max_(b.get_max()){}
 
 	point2d get_min() const{
 		return min_;

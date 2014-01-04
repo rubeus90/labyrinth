@@ -22,7 +22,7 @@ public:
 		i_++;
 	}
 
-	operator point2d() const{
+	struct point2d point2d() const{
 		int x = i_ / box_->get_max().y_ ;
 		int y = i_ % box_->get_max().y_ ;
 		return point2d(x,y);
