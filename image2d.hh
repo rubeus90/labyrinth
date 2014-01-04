@@ -33,6 +33,7 @@ public:
   T& operator()(const point_type& p){
     return data_[domain_.get_max().y_ * p.x_ + p.y_];
   }
+  template <typename G>
   T operator()(const point_type& p) const{
     return data_[domain_.get_max().y_ * p.x_ + p.y_];
   }
@@ -43,11 +44,10 @@ public:
   }
 
   //Remplir l'image
-  template <typename point2d>
-  void fill2d(image2d<point2d>& image, const T& v){
-    box2d_iterator<point2d> i(image.domain());
+  void fill2d(image2d<T>& image, const T& v){
+    box2d_iterator<box2d> i(domain_);
     for(i.start(); i.is_valid(); i.next()){
-      point2d p = i.point2d();
+      point2d p = i.point();
       image(p) = v;
     }
   }

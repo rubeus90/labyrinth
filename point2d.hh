@@ -4,7 +4,7 @@
 struct point2d{
 	int x_, y_;
 	
-	point2d(const unsigned x, const unsigned y){
+	point2d(const int x, const int y){
 		x_ = x;
 		y_ = y;
 	}
