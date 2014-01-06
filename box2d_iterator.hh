@@ -2,6 +2,7 @@
 #define BOX2D_ITERATOR_HH
 
 #include "point2d.hh"
+#include <iostream>
 
 template <typename T>
 class box2d_iterator{
@@ -13,28 +14,34 @@ public:
 
 	void start(){
 		i_ = 0;
-		x_ = box_.get_min().x_;
-		y_ = box_.get_min().y_;
+		min_x = box_.get_min().x_;
+		min_y = box_.get_min().y_;
+		max_x = box_.get_max().x_;
+		max_y = box_.get_max().y_;
+
+		x_ = min_x;
+		y_ = min_y;
+		std::cout << "   i=" << i_ << "  x=" << x_ << "  y=" << y_ <<std::endl;
 	}
 
 	bool is_valid() const{
-		return (x_ <= box_.get_max().x_ && y_ <= box_.get_max().y_);
+		return i_ < (max_x - min_x +1) * (max_y - min_y +1);
 	}
 
 	void next(){
 		i_++;
+		x_ = i_ / (max_y - min_y + 1) + min_x;
+		y_ = i_ % (max_y - min_y + 1) + min_y;
+		std::cout << "   i=" << i_ << "  x=" << x_ << "  y=" << y_ <<std::endl;
 	}
 
 	point2d point() const{
-		int x = i_ / box_.get_max().y_ ;
-		int y = i_ % box_.get_max().y_ ;
-		
-		return point2d(x,y);
+		return point2d(x_,y_);
 	}
 
 private:
 	T box_;
-	unsigned i_, x_, y_;
+	unsigned i_, x_, y_, max_x, max_y, min_x, min_y;
 };
 
 #endif
