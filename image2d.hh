@@ -23,13 +23,15 @@ public:
 
   //Constructeurs
   image2d(const domain_type& domain): domain_(domain) {
-    unsigned nrows = domain_.get_max().x_ - domain_.get_min().x_ +1;
-    unsigned ncols = domain_.get_max().y_ - domain_.get_min().y_ +1 ;
-    data_.resize(nrows*ncols);
+    nrows_ = domain.get_max().x_ - domain.get_min().x_ +1;
+    ncols_ = domain.get_max().y_ - domain.get_min().y_ +1;
+    data_.resize(nrows_*ncols_);
   }
 
   image2d(unsigned nrows, unsigned ncols) : domain_(point2d(0,0), point2d(nrows-1,ncols-1)) {
-    data_.resize(nrows*ncols);
+    nrows_ = nrows;
+    ncols_ = ncols;
+    data_.resize(nrows_*ncols_);
   }
 
   //Acceder a la valeur du pixel
@@ -51,17 +53,30 @@ public:
     for(i.start(); i.is_valid(); i.next()){
       point2d p = i.point();
       image(p)=v;
-      std::cout << image(p) << std::endl;
+      // std::cout << image(p) << std::endl;
     }
   }
 
-  void affiche(){
+  void affiche(image2d<T>& image){
+    unsigned min_x = domain_.get_min().x_;
+    unsigned min_y = domain_.get_min().y_;
 
+    std::cout << "------------------------" << std::endl << std::endl;
+    for(int j=0; j< nrows_; j++){
+      for(int i=0; i< ncols_; i++){
+        unsigned x = i / ncols_ + min_x;
+        unsigned y = i % ncols_ + min_y;
+        std::cout << image(point2d(x,y)) << " ";
+      }
+      std::cout << std::endl;
+    }
+    std::cout << std::endl << "------------------------" << std::endl;
   }
 
 private:
   domain_type domain_;
   std::vector<T> data_;
+  unsigned nrows_, ncols_;
 };
 
 #endif
