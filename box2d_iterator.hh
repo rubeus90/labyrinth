@@ -21,7 +21,6 @@ public:
 
 		x_ = min_x;
 		y_ = min_y;
-		// std::cout << "   i=" << i_ << "  x=" << x_ << "  y=" << y_ <<std::endl;
 	}
 
 	bool is_valid() const{
@@ -32,7 +31,6 @@ public:
 		i_++;
 		x_ = i_ / (max_y - min_y + 1) + min_x;
 		y_ = i_ % (max_y - min_y + 1) + min_y;
-		// std::cout << "   i=" << i_ << "  x=" << x_ << "  y=" << y_ <<std::endl;
 	}
 
 	point2d point() const{

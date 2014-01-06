@@ -21,17 +21,17 @@ public:
     typedef image2d<U> ret;
   };
 
-  //Constructeurs
+  // Constructeurs
   image2d(const domain_type& domain): domain_(domain) {
     nrows_ = domain.get_max().x_ - domain.get_min().x_ +1;
     ncols_ = domain.get_max().y_ - domain.get_min().y_ +1;
-    data_.resize(nrows_*ncols_);
+    data_.reserve(nrows_*ncols_);
   }
 
   image2d(unsigned nrows, unsigned ncols) : domain_(point2d(0,0), point2d(nrows-1,ncols-1)) {
     nrows_ = nrows;
     ncols_ = ncols;
-    data_.resize(nrows_*ncols_);
+    data_.reserve(nrows_*ncols_);
   }
 
   //Acceder a la valeur du pixel
@@ -53,7 +53,6 @@ public:
     for(i.start(); i.is_valid(); i.next()){
       point2d p = i.point();
       image(p)=v;
-      // std::cout << image(p) << std::endl;
     }
   }
 
