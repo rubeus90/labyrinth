@@ -9,7 +9,7 @@ int main(){
 	image.affiche(image);
 
 	image2.fill2d(image2, 0);
-	image2(point2d(0,0)) = 1;
+	image2(point2d(1,3)) = 1;
 	image2.affiche(image2);
 
 	image2d<int> image3 = compute_dmap__SPECIFIC(image2);
