@@ -63,8 +63,8 @@ public:
     std::cout << "------------------------" << std::endl << std::endl;
     for(int j=0; j< nrows_; j++){
       for(int i=0; i< ncols_; i++){
-        unsigned x = i / ncols_ + min_x;
-        unsigned y = i % ncols_ + min_y;
+        unsigned x = (i+j) / ncols_ + min_x;
+        unsigned y = (i+j) % ncols_ + min_y;
         std::cout << image(point2d(x,y)) << " ";
       }
       std::cout << std::endl;

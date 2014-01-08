@@ -2,7 +2,6 @@
 #define BOX2D_ITERATOR_HH
 
 #include "point2d.hh"
-#include <iostream>
 
 template <typename T>
 class box2d_iterator{

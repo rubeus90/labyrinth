@@ -2,7 +2,6 @@
 #define BOX2D_HH
 
 #include "box2d_iterator.hh"
-// #include "point2d.hh"
 
 class box2d{
 public:
@@ -19,6 +18,13 @@ public:
 
 	point2d get_max() const{
 		return max_;
+	}
+
+	bool has(const point2d& p){
+		if(p.x_ >= min_.x_ && p.y_ >= min_.y_ && p.x_ <= max_.x_ && p.y_ <= max_.y_)
+			return true;
+		else
+			return false;
 	}
 
 private:
