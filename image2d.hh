@@ -36,10 +36,10 @@ public:
 
   //Acceder a la valeur du pixel
   T& operator()(const point_type& p){
-    return data_[domain_.get_max().y_ * p.x_ + p.y_];
+    return data_[(domain_.get_max().y_+1) * p.x_ + p.y_];
   }
   T operator()(const point_type& p) const{
-    return data_[domain_.get_max().y_ * p.x_ + p.y_];
+    return data_[(domain_.get_max().y_+1) * p.x_ + p.y_];
   }
 
   //Domaine de l'image
