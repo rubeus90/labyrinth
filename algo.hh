@@ -11,11 +11,11 @@ template <typename T>
 
 // image2d<unsigned> compute_dmap__SPECIFIC(const image2d<bool_t>& input){
 
-T compute_dmap__SPECIFIC(T& input){
+image2d<int> compute_dmap__SPECIFIC(T& input){
 	box2d box(input.domain());
 
 	const unsigned max = UINT_MAX; //D.npoints();
-	T image(box);
+	image2d<int> image(box);
 
 	box2d_iterator<box2d> ite(box);
 	for (ite.start(); ite.is_valid(); ite.next()){

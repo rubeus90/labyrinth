@@ -25,8 +25,9 @@ int main(){
 	th.affiche(th);
 
 	// image_through<image2d<int>, equal<int> > image3 = compute_dmap__SPECIFIC(th);
-	// image3.affiche(image3);
-
-	image2d<int> image3 = compute_dmap__SPECIFIC(image2);
+	image2d<int> image3 = compute_dmap__SPECIFIC(th);
 	image3.affiche(image3);
+
+	// image2d<int> image3 = compute_dmap__SPECIFIC(image2);
+	// image3.affiche(image3);
 }
