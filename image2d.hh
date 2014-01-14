@@ -51,8 +51,8 @@ public:
   void fill2d(image2d<T>& image, const T& v){
     box2d_iterator<box2d> i(domain_);
     for(i.start(); i.is_valid(); i.next()){
-      point2d p = i.point();
-      image(p)=v;
+      // point2d p = i.point();
+      image(i)=v;
     }
   }
 

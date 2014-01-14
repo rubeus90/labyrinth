@@ -32,7 +32,7 @@ public:
 		y_ = i_ % (max_y - min_y + 1) + min_y;
 	}
 
-	point2d point() const{
+	operator point2d() const{
 		return point2d(x_,y_);
 	}
 
