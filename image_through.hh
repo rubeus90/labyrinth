@@ -10,10 +10,10 @@ public:
 
 	image_through(const box2d& domain) {}
 
-	typename F::value& operator()(point2d& p){
+	typename F::value operator()(const point2d& p){
     	return f_(i_(p));
   	}
-  	typename F::value operator()(point2d& p) const{
+  	typename F::value operator()(const point2d& p) const{
     	return f_(i_(p));
   	}
 

@@ -14,12 +14,12 @@ int main(){
 
 	image2.fill2d(image2, 0);
 	image2(point2d(0,0)) = 1;
-	image2(point2d(1,3)) = 1;
+	image2(point2d(1,3)) = 4;
 	image2(point2d(1,2)) = 1;
 	image2.affiche(image2);
 
-	equal<int> x(3);
-	assert(x(3));
+	equal<int> x(1);
+	assert(x(1));
 
 	image_through<image2d<int>, equal<int> > th(image2, x);
 	th.affiche(th);
