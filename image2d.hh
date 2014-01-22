@@ -5,6 +5,7 @@
 #include <vector>
 #include <limits.h>
 #include <iostream>
+#include "domain_if.hh"
 
 template <typename T>
 class image2d
@@ -14,7 +15,6 @@ public:
   typedef box2d domain_type;
   typedef typename domain_type::point_type point_type;
   typedef typename domain_type::p_iterator_type p_iterator_type;
-  //typedef typename domain_type::n_iterator_type n_iterator_type;
 
   template <typename U>
   struct width_value_type{
@@ -31,6 +31,13 @@ public:
   image2d(unsigned nrows, unsigned ncols) : domain_(point2d(0,0), point2d(nrows-1,ncols-1)) {
     nrows_ = nrows;
     ncols_ = ncols;
+    data_.reserve(nrows_*ncols_);
+  }
+
+  template <typename I, typename F>
+  image2d(const domain_if<I,F> domain): domain_(domain.get_min(), domain.get_max()) {
+    nrows_ = domain.get_max().x_ - domain.get_min().x_ +1;
+    ncols_ = domain.get_max().y_ - domain.get_min().y_ +1;
     data_.reserve(nrows_*ncols_);
   }
 

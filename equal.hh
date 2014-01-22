@@ -3,14 +3,14 @@
 
 template <typename T>
 
-struct equal{
+struct superieur{
 	typedef T value;
 	T x_;
 
-	equal(const T& x): x_(x){}
+	superieur(const T& x): x_(x){}
 
 	bool operator()(const T& i) const{
-		if(x_ == i)
+		if(x_ < i)
 			return true;
 		else
 			return false;

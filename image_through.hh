@@ -6,14 +6,18 @@
 template <typename I, typename F>
 class image_through{
 public:
+	typedef typename F::value value_type;
+	typedef typename I::domain_type domain_type;
+	typedef typename I::p_iterator_type p_iterator_type;
+
 	image_through(I& i, F& f): i_(i), f_(f) {}
 
 	image_through(const box2d& domain) {}
 
-	typename F::value operator()(const point2d& p){
+	value_type operator()(const point2d& p){
     	return f_(i_(p));
   	}
-  	typename F::value operator()(const point2d& p) const{
+  	value_type operator()(const point2d& p) const{
     	return f_(i_(p));
   	}
 
