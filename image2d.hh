@@ -68,8 +68,8 @@ public:
     unsigned min_y = domain_.get_min().y_;
 
     std::cout << "------------------------" << std::endl << std::endl;
-    for(int j=0; j< nrows_; j++){
-      for(int i=0; i< ncols_; i++){
+    for(unsigned j=0; j< nrows_; j++){
+      for(unsigned i=0; i< ncols_; i++){
         unsigned x = (i+j*ncols_) / ncols_ + min_x;
         unsigned y = (i+j*ncols_) % ncols_ + min_y;
         std::cout << image(point2d(x,y)) << " ";
