@@ -6,11 +6,11 @@
 #include <queue>
 #include <climits>
 #include <iostream>
+#include "nop.hh"
 
 template <typename T>
+image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, Nop nope){
 
-
-image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input){
 	typename T::domain_type box = input.domain();
 	const unsigned max = 4444; 
 	image2d<typename T::value_type> image(box);
@@ -56,6 +56,12 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input){
 	}
 
 	return image;
+}
+
+template <typename T>
+image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input){
+	Nop nope;
+	return compute_dmap__SPECIFIC(input, nope);
 }
 
 #endif

@@ -15,7 +15,7 @@ public:
 		max_y = domain_.get_max().y_;
 	}
 
-	void start(){ // Fonctionne
+	void start(){
 		i_ = 0;	
 		x_ = 0;
 		y_ = 0;
