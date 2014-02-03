@@ -18,10 +18,12 @@ public:
 	value_type operator()(const point2d& p){
     	if(f_(p))
     		return i_(p);
+    	return 0;
   	}
   	value_type operator()(const point2d& p) const{
     	if(f_(p))
     		return i_(p);
+		return 0;
   	}
 
   	domain_type domain(){
@@ -39,10 +41,10 @@ public:
 		        unsigned y = (i+j*ncols_) % ncols_;
 		        point2d p(x,y);
 		        if(f_(p)){
-		        	std::cout << image(p) << " ";
+		        	std::cout << image(p) << "\t";
 		        }
 		        else
-		        	std::cout << " " << " ";
+		        	std::cout << " " << "\t";
 		    }
 	     	std::cout << std::endl;
 	    }

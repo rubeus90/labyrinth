@@ -30,11 +30,15 @@ public:
 		i_++;
 	}
 
-	point2d point() const{
+	operator point2d() const{
 		int x = p_.x_ + delta_[i_].x_;
 		int y = p_.y_ + delta_[i_].y_;
-		
-		return point2d(x,y);		
+
+		//Effet de bord
+		x = (x==-1) ? 0 : x;
+		y = (y==-1) ? 0 :y;
+
+		return point2d(x,y);
 	}
 
 private:

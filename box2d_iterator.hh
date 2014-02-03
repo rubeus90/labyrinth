@@ -21,7 +21,7 @@ public:
 	}
 
 	bool is_valid() const{
-		return i_ < (max_x +1) * (max_y +1);
+		return i_ < (max_x +1) * (max_y +1) ;
 	}
 
 	void next(){
@@ -32,6 +32,13 @@ public:
 
 	operator point2d() const{
 		return point2d(x_,y_);
+	}
+
+	unsigned getX(){
+		return x_;
+	}
+	unsigned getY(){
+		return y_;
 	}
 
 private:

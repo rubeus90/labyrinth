@@ -58,7 +58,6 @@ public:
   void fill2d(image2d<T>& image, const T& v){
     box2d_iterator<box2d> i(domain_);
     for(i.start(); i.is_valid(); i.next()){
-      // point2d p = i.point();
       image(i)=v;
     }
   }
@@ -72,7 +71,7 @@ public:
       for(unsigned i=0; i< ncols_; i++){
         unsigned x = (i+j*ncols_) / ncols_ + min_x;
         unsigned y = (i+j*ncols_) % ncols_ + min_y;
-        std::cout << image(point2d(x,y)) << " ";
+        std::cout << image(point2d(x,y)) << "\t";
       }
       std::cout << std::endl;
     }

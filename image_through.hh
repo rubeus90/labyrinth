@@ -35,7 +35,7 @@ public:
 	        unsigned x = (i+j*ncols_) / ncols_;
 	        unsigned y = (i+j*ncols_) % ncols_;
 	        point2d p(x,y);
-	        std::cout << image(p) << " ";
+	        std::cout << image(p) << "\t";
 	      }
 	      std::cout << std::endl;
 	    }

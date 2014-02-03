@@ -24,7 +24,7 @@ public:
 	}
 
 	bool has(const point2d& p){
-		return (f_(p) == 1) && (d_.has(p)); 
+		return (f_(p) == 1) && (p.x_ >= min_.x_ && p.y_ >= min_.y_ && p.x_ <= max_.x_ && p.y_ <= max_.y_); 
 	}
 private:
 	D& d_;
