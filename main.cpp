@@ -3,7 +3,7 @@
 #include "image_through.hh"
 #include "image_if.hh"
 #include <assert.h>
-#include "nop.hh"
+#include "traceur.hh"
 
 
 void parcour(image2d<int>& depart, image2d<int>& traite){
