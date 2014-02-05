@@ -31,6 +31,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 	for(ite.start(); ite.is_valid(); ite.next()){
 		if(input(ite) == 2){
 			image(ite) = 0;
+			traceur.setDebut(ite,imageTraceur);
 			n_ite.center_at(ite);
 
 			for(n_ite.start(); n_ite.is_valid(); n_ite.next()){
@@ -59,6 +60,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 	}
 
 	traceur.affiche(imageTraceur);
+	traceur.affiche2(traceur.chemin(imageTraceur));
 
 	return image;
 }
