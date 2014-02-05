@@ -61,8 +61,8 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 }
 
 struct Nope{
-	void init(){}
-	void follow(point2d& point){}
+	void init(point2d point){}
+	void follow(point2d point1,point2d point2){}
 };
 
 template <typename T>
