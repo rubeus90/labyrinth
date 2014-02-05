@@ -17,7 +17,7 @@ public:
   typedef typename domain_type::p_iterator_type p_iterator_type;
 
   template <typename U>
-  struct width_value_type{
+  struct with_value_type{
     typedef image2d<U> ret;
   };
 

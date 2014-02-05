@@ -6,10 +6,10 @@
 #include <queue>
 #include <climits>
 #include <iostream>
-#include "nop.hh"
+#include "traceur.hh"
 
-template <typename T>
-image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, Nop nope){
+template <typename T, typename N>
+image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 
 	typename T::domain_type box = input.domain();
 	const unsigned max = 4444; 
@@ -21,6 +21,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, Nop nope){
 	//On assigne à tous les points valide la valeur max
 	for (ite.start(); ite.is_valid(); ite.next()){
 		image(ite) = max;
+		traceur.init(ite);
 	}
 
 	std::queue<point2d> q;
@@ -30,12 +31,13 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, Nop nope){
 		if(input(ite) == 2){
 			image(ite) = 0;
 			n_ite.center_at(ite);
-			for(n_ite.start(); n_ite.is_valid(); n_ite.next()){
-				std::cout << box.has(n_ite) << std::endl;
 
+			for(n_ite.start(); n_ite.is_valid(); n_ite.next()){
 				if(box.has(n_ite) and (input(n_ite) == 1)){
 					std::cout << "" << std::endl;
 					q.push(ite);
+					point2d pointArrive = n_ite;
+					traceur.follow(ite, n_ite);
 					break;
 				}
 				
@@ -58,9 +60,14 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, Nop nope){
 	return image;
 }
 
+struct Nope{
+	void init(){}
+	void follow(point2d& point){}
+};
+
 template <typename T>
 image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input){
-	Nop nope;
+	Nope nope;
 	return compute_dmap__SPECIFIC(input, nope);
 }
 

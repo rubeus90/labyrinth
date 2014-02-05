@@ -3,6 +3,7 @@
 #include "image_through.hh"
 #include "image_if.hh"
 #include <assert.h>
+#include "nop.hh"
 
 
 void parcour(image2d<int>& depart, image2d<int>& traite){
@@ -71,7 +72,8 @@ int main(){
 	std::cout << "Image if:" << std::endl;
 	imageTruc.affiche(imageTruc);
 
-	image2d<int> image3 = compute_dmap__SPECIFIC(imageTruc);
+	Traceur<box2d> traceur(image2.domain());
+	image2d<int> image3 = compute_dmap__SPECIFIC(imageTruc, traceur);
 	std::cout << "Image sortie de l'algo:" << std::endl;
 	image3.affiche(image3);
 
