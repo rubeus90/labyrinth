@@ -7,22 +7,38 @@ template <typename D>
 
 class Traceur{
 public:
-	Traceur(D domain): domain_(domain), image_(6,5) {
+	Traceur(D domain): domain_(domain){}
+
+	template <typename T>
+	void init(point2d pointInit, image2d<T>& image){
+		image(pointInit) = pointInit;
 	}
 
-	void init(point2d pointInit){
-		// std::cout << image(pointInit).x_ << "        HEYYYYYYY" << std::endl;
-		image_(pointInit) = 1;
-		// image(point2d(0,0)) = point2d(0,0);
+	template <typename T>
+	void follow(point2d pointDepart, point2d pointArrive, image2d<T>& image){
+		image(pointArrive) = pointDepart;
 	}
 
-	void follow(point2d pointDepart, point2d pointArrive){
-		// image_(pointArrive) = pointDepart;
-	}
+	template <typename T>
+  	void affiche(image2d<T>& image){
+  		int nrows_ = image.domain().get_max().x_ +1;
+	    int ncols_ = image.domain().get_max().y_ +1;
+
+	    std::cout << "------------------------" << std::endl << std::endl;
+	    for(int j=0; j< nrows_; j++){
+	      	for(int i=0; i< ncols_; i++){
+		        unsigned x = (i+j*ncols_) / ncols_;
+		        unsigned y = (i+j*ncols_) % ncols_;
+		        point2d p(x,y);
+		       	std::cout << image(p).x_ << " " << image(p).y_ << "\t";
+		    }
+	     	std::cout << std::endl;
+	    }
+	    std::cout << std::endl << "------------------------" << std::endl;
+  	}
 
 private:
 	D domain_;
-	image2d<int> image_;
 };
 
 #endif
