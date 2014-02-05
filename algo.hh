@@ -14,6 +14,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 	typename T::domain_type box = input.domain();
 	const unsigned max = 4444; 
 	image2d<typename T::value_type> image(box);
+	image2d<point2d> imageTraceur(6,5);
 
 
 	typename T::p_iterator_type ite(box);
@@ -21,7 +22,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 	//On assigne à tous les points valide la valeur max
 	for (ite.start(); ite.is_valid(); ite.next()){
 		image(ite) = max;
-		traceur.init(ite);
+		traceur.init(ite, imageTraceur);
 	}
 
 	std::queue<point2d> q;
