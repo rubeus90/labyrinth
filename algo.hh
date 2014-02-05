@@ -38,7 +38,6 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 					std::cout << "" << std::endl;
 					q.push(ite);
 					point2d pointArrive = n_ite;
-					traceur.follow(ite, n_ite, imageTraceur);
 					break;
 				}
 				
@@ -52,6 +51,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 		n_ite.center_at(p);
 		for(n_ite.start(); n_ite.is_valid(); n_ite.next()){
 			if(box.has(n_ite) and image(n_ite) == max){
+				traceur.follow(p, n_ite, imageTraceur);
 				image(n_ite) = image(p) + 1;
 				q.push(n_ite);
 			}
