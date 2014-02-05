@@ -38,7 +38,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 					std::cout << "" << std::endl;
 					q.push(ite);
 					point2d pointArrive = n_ite;
-					traceur.follow(ite, n_ite);
+					traceur.follow(ite, n_ite, imageTraceur);
 					break;
 				}
 				
@@ -57,6 +57,8 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 			}
 		}
 	}
+
+	traceur.affiche(imageTraceur);
 
 	return image;
 }
