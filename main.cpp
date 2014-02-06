@@ -5,89 +5,54 @@
 #include <assert.h>
 #include "traceur.hh"
 
-
-// void parcour(image2d<int>& depart, image2d<int>& traite){
-// 	std::cout << "Les coordonnees des points du chemin : " << std::endl;
-	
-// 	int x, y = 0;	
-// 	//extraire le coordonne de sorti
-// 	box2d box = depart.domain();
-// 	box2d_iterator<box2d> ite(box);
-// 	for (ite.start(); ite.is_valid(); ite.next()){  // marche
-// 		if(depart(ite)==3){
-// 			x = ite.getX();
-// 			y = ite.getY();
-// 			break;
-// 		}
-// 	}
-// 	std::cout << "x:" << x << " y: " << y << std::endl;
-// 	point2d p(x,y);
-
-// 	int i;
-// 	neighb2d_iterator n_ite;
-// 	for(i=traite(p); i>=0; i--){
-// 		n_ite.center_at(p);
-		
-// 		for(n_ite.start(); n_ite.is_valid(); n_ite.next()){
-
-// 			if(traite(n_ite) +1 == traite(p)){
-// 				p = n_ite;
-// 				std::cout << "x:" << p.x_ << " y: " << p.y_ << std::endl;
-// 				break;
-// 			}
-// 		}
-// 	}
-// }
-
 int main(){
-	image2d<int> image2(6,5);
-	image2d<point2d> image4(6,5);
+	image2d<int> image(6,5);
 	
-	image2.fill2d(image2, 0);
-	image2(point2d(0,1)) = 2;
-	// image2(point2d(0,1)) = 1;
-	image2(point2d(0,2)) = 1;
-	image2(point2d(0,3)) = 1;
-	image2(point2d(1,3)) = 1;
-	image2(point2d(2,3)) = 1;
-	image2(point2d(2,2)) = 1;
-	image2(point2d(2,1)) = 1;
-	image2(point2d(3,1)) = 1;
-	image2(point2d(4,1)) = 1;
-	image2(point2d(4,0)) = 1;
-	image2(point2d(5,1)) = 1;
-	image2(point2d(5,2)) = 1;
-	image2(point2d(5,3)) = 1;
-	image2(point2d(5,4)) = 3;
-	image2(point2d(3,3)) = 1;
+	image.fill2d(image, 0);
+	image(point2d(0,1)) = 2;
+	image(point2d(0,2)) = 1;
+	image(point2d(0,3)) = 1;
+	image(point2d(1,3)) = 1;
+	image(point2d(2,3)) = 1;
+	image(point2d(2,2)) = 1;
+	image(point2d(2,1)) = 1;
+	image(point2d(3,1)) = 1;
+	image(point2d(4,1)) = 1;
+	image(point2d(4,0)) = 1;
+	image(point2d(5,1)) = 1;
+	image(point2d(5,2)) = 1;
+	image(point2d(5,3)) = 1;
+	image(point2d(5,4)) = 3;
+	image(point2d(3,3)) = 1;
 	std::cout << "Image d'entree:" << std::endl;
-	image2.affiche(image2);
+	image.affiche(image);
 
 	// Prédicat
 	superieur<int> x(0);
 
 	//Création image through
-	image_through<image2d<int>, superieur<int> > th(image2, x);
+	image_through<image2d<int>, superieur<int> > imageThrough(image, x);
 	std::cout << "Image through:" << std::endl;
-	th.affiche(th);
+	imageThrough.affiche(imageThrough);
 
 	//Création image_if
-	image_if<image2d<int>, image_through<image2d<int>, superieur<int> > > imageTruc(image2, th);
+	image_if<image2d<int>, image_through<image2d<int>, superieur<int> > > imageIf(image, imageThrough);
 	std::cout << "Image if:" << std::endl;
-	imageTruc.affiche(imageTruc);
+	imageIf.affiche(imageIf);
 	
 
 	//Traceur
-	Traceur<image2d<point2d> > traceur(image4);
+	image2d<point2d> img(6,5);
+	Traceur<image2d<point2d> > traceur(img);
 
 	//Algo
-	image2d<int> image3 = compute_dmap__SPECIFIC(imageTruc,traceur);
-	image3.affiche(image3);
+	image2d<int> imageAlgo = compute_dmap__SPECIFIC(imageIf,traceur);
+	std::cout << "Image produit par l'algo:" << std::endl;
+	imageAlgo.affiche(imageAlgo);
 
-	//Truc de traceur
+	//On retrace le chemin dans le labyrinth
 	traceur.affiche_coord();
-	image2d<int> image5 = traceur.chemin();
-	image5.affiche(image5);
-	
-
+	image2d<int> imageTraceur = traceur.chemin();
+	std::cout << "Image du chemin:" << std::endl;
+	imageTraceur.affiche(imageTraceur);
 }
