@@ -21,7 +21,6 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input,N& traceur){
 	//On assigne à tous les points valide la valeur max
 	for (ite.start(); ite.is_valid(); ite.next()){
 		image(ite) = max;
-		traceur.init(ite);
 	}
 
 	std::queue<point2d> q;
@@ -30,7 +29,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input,N& traceur){
 	for(ite.start(); ite.is_valid(); ite.next()){
 		if(input(ite) == 2){
 			image(ite) = 0;
-			traceur.setDebut(ite);
+			traceur.init(ite);
 			n_ite.center_at(ite);
 
 			for(n_ite.start(); n_ite.is_valid(); n_ite.next()){
@@ -62,7 +61,6 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input,N& traceur){
 struct Nope{
 	void init(point2d pointInit){}
 	void follow(point2d pointDepart, point2d pointArrive){}
-	void setDebut(point2d point){}
 };
 
 template <typename T>
