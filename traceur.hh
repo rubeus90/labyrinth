@@ -73,23 +73,23 @@ public:
   	}
 
 	//Methode pour afficher image de fin
-	void affiche2(image2d<int> image){
-  		int nrows_ = image.domain().get_max().x_ +1;
-	    int ncols_ = image.domain().get_max().y_ +1;
+	// void affiche2(image2d<int> image){
+ //  		int nrows_ = image.domain().get_max().x_ +1;
+	//     int ncols_ = image.domain().get_max().y_ +1;
 
-	    std::cout << "Image du chemin pour traverser le labyrinth:" << std::endl;
-	    std::cout << "------------------------" << std::endl << std::endl;
-	    for(int j=0; j< nrows_; j++){
-	      	for(int i=0; i< ncols_; i++){
-		        unsigned x = (i+j*ncols_) / ncols_;
-		        unsigned y = (i+j*ncols_) % ncols_;
-		        point2d p(x,y);
-		        std::cout << image(p) << "\t";
-		    }
-	     	std::cout << std::endl;
-	    }
-	    std::cout << std::endl << "------------------------" << std::endl;
-  	}
+	//     std::cout << "Image du chemin pour traverser le labyrinth:" << std::endl;
+	//     std::cout << "------------------------" << std::endl << std::endl;
+	//     for(int j=0; j< nrows_; j++){
+	//       	for(int i=0; i< ncols_; i++){
+	// 	        unsigned x = (i+j*ncols_) / ncols_;
+	// 	        unsigned y = (i+j*ncols_) % ncols_;
+	// 	        point2d p(x,y);
+	// 	        std::cout << image(p) << "\t";
+	// 	    }
+	//      	std::cout << std::endl;
+	//     }
+	//     std::cout << std::endl << "------------------------" << std::endl;
+ //  	}
 
 private:
 	D domain_;

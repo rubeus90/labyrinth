@@ -78,7 +78,7 @@ struct Nope{
 	image2d<int> chemin(image2d<T>& image){}
 	template <typename T>
 	void affiche_coord(image2d<T>& image){}
-	void affiche2(image2d<int> image){}
+	// void affiche2(image2d<int> image){}
 };
 
 template <typename T>
