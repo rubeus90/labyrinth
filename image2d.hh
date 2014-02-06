@@ -15,6 +15,7 @@ public:
   typedef box2d domain_type;
   typedef typename domain_type::point_type point_type;
   typedef typename domain_type::p_iterator_type p_iterator_type;
+  typedef image2d<T> image_algo_type;
 
   template <typename U>
   struct with_value_type{

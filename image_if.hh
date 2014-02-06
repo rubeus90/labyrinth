@@ -10,6 +10,8 @@ public:
 	typedef typename F::value_type value_type;
 	typedef domain_if<typename I::domain_type, F> domain_type;
 	typedef typename domain_type::p_iterator_type p_iterator_type;
+	typedef typename I::image_algo_type image_algo_type;
+	typedef typename I::point_type point_type;
 
 	image_if(I& i, F& f): i_(i), f_(f), domain_(i.domain(), f_) {}
 

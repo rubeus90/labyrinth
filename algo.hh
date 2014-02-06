@@ -9,12 +9,12 @@
 #include "traceur.hh"
 
 template <typename T, typename N>
-image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input,N& traceur){
+typename T::image_algo_type compute_dmap__SPECIFIC(T& input,N& traceur){
 
 	typename T::domain_type box = input.domain();
 	const unsigned max = 4444; 
-	image2d<typename T::value_type> image(box);
-
+	// image2d<typename T::value_type> image(box);
+	typename T::image_algo_type image(box);
 
 	typename T::p_iterator_type ite(box);
 
@@ -23,7 +23,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input,N& traceur){
 		image(ite) = max;
 	}
 
-	std::queue<point2d> q;
+	std::queue<typename T::point_type> q;
 	neighb2d_iterator n_ite;
 
 	for(ite.start(); ite.is_valid(); ite.next()){
@@ -43,7 +43,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input,N& traceur){
 	}
 
 	while(not q.empty()){
-		point2d p(q.front());
+		typename T::point_type p(q.front());
 		q.pop();
 		n_ite.center_at(p);
 		for(n_ite.start(); n_ite.is_valid(); n_ite.next()){
