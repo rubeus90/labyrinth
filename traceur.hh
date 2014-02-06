@@ -11,12 +11,13 @@ public:
 
 	Traceur(I& image): image_(image), fin_(0,0), debut_(0,0){} //Obligatoire d'initialiser fin et debut
 
-	void init(point_type pointInit){
-		image_(pointInit) = pointInit;
-	}
-
 	//Initialisation des valeurs de l'image
-	void setDebut(point_type point){
+	void init(point_type point){
+		//On initialise l'image		
+		point2d p(0,0);
+		image_.fill2d(image_, p);
+
+		//On marque le point de départ
 		debut_ = point;
 		image_(debut_)= point2d(-1,-1);
 	}
