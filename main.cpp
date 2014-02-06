@@ -41,6 +41,7 @@
 
 int main(){
 	image2d<int> image2(6,5);
+	image2d<point2d> image4(6,5);
 	
 	image2.fill2d(image2, 0);
 	image2(point2d(0,1)) = 2;
@@ -62,21 +63,30 @@ int main(){
 	std::cout << "Image d'entree:" << std::endl;
 	image2.affiche(image2);
 
+	// Prédicat
 	superieur<int> x(0);
 
+	//Création image through
 	image_through<image2d<int>, superieur<int> > th(image2, x);
 	std::cout << "Image through:" << std::endl;
 	th.affiche(th);
 
+	//Création image_if
 	image_if<image2d<int>, image_through<image2d<int>, superieur<int> > > imageTruc(image2, th);
 	std::cout << "Image if:" << std::endl;
 	imageTruc.affiche(imageTruc);
+	
+	//Traceur
+	Traceur<image2d<point2d> > traceur(image4);
 
-	Traceur<box2d> traceur(image2.domain());
-	image2d<int> image3 = compute_dmap__SPECIFIC(imageTruc, traceur);
-	//image2d<int> image3 = compute_dmap__SPECIFIC(imageTruc);
-	std::cout << "Image sortie de l'algo:" << std::endl;
+	//Algo
+	image2d<int> image3 = compute_dmap__SPECIFIC(imageTruc,traceur);
 	image3.affiche(image3);
 
-	//parcour(image2, image3);
+	//Truc de traceur
+	traceur.affiche_coord();
+	image2d<int> image5 = traceur.chemin();
+	image5.affiche(image5);
+	
+
 }

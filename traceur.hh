@@ -3,48 +3,43 @@
 
 #include "image2d.hh"
 
-template <typename D>
+template <typename I>
 
 class Traceur{
 public:
-	Traceur(D domain): domain_(domain), fin_(0,0), debut_(0,0) {} //Obligatoire d'initialiser fin et debut
+	typedef typename I::point_type point_type;
 
-	template <typename T>
-	void init(point2d pointInit, image2d<T>& image){
-		image(pointInit) = pointInit;
+	Traceur(I& image): image_(image), fin_(0,0), debut_(0,0){} //Obligatoire d'initialiser fin et debut
+
+	void init(point_type pointInit){
+		image_(pointInit) = pointInit;
 	}
 
-	//Methode qui sert a initialiser le premier
-	template <typename T>
-	void setDebut(point2d point,image2d<T>& image){
-		debut_.x_ = point.x_;
-		debut_.y_ = point.y_;
-		image(debut_)= point2d(-1,-1);
+	//Initialisation des valeurs de l'image
+	void setDebut(point_type point){
+		debut_ = point;
+		image_(debut_)= point2d(-1,-1);
 	}
 
-	template <typename T>
-	void follow(point2d pointDepart, point2d pointArrive, image2d<T>& image){
-		image(pointArrive) = pointDepart;
+	//Remplissage de l'image avec les coordonnées du précédent
+	void follow(point_type pointDepart,point_type pointArrive){
+		image_(pointArrive) = pointDepart;
 		fin_ = pointArrive;
 	}
 
-	template <typename T>
-	image2d<int> chemin(image2d<T>& image){
-
+	//Créé l'image solution
+	image2d<int> chemin(){
 		//Création image de sorti
-		box2d box = image.domain();
+		box2d box = image_.domain();
 		image2d<int> final(box);
 		final.fill2d(final,0);
 
-		//Remonter le chemin
-		//On part du dernier
-		point2d p(fin_.x_,fin_.y_);
-
+		point2d p(fin_.x_,fin_.y_);	
 		
 		while(p.x_ != -1 && p.y_ != -1){		
 			final(p) = 1;
-			int x = image(p).x_;
-			int y = image(p).y_;
+			int x = image_(p).x_;
+			int y = image_(p).y_;
 			p.x_ = x;
 			p.y_ = y;
 		}
@@ -53,10 +48,9 @@ public:
 	}
 
 	//Methode pour afficher une image contenant des point2d
-	template <typename T>
-  	void affiche_coord(image2d<T>& image){
-  		int nrows_ = image.domain().get_max().x_ +1;
-	    int ncols_ = image.domain().get_max().y_ +1;
+  	void affiche_coord(){
+  		int nrows_ = image_.domain().get_max().x_ +1;
+	    int ncols_ = image_.domain().get_max().y_ +1;
 
 	    std::cout << "Image des coordonnees des points precedents:" << std::endl;
 	    std::cout << "------------------------" << std::endl << std::endl;
@@ -65,26 +59,7 @@ public:
 		        unsigned x = (i+j*ncols_) / ncols_;
 		        unsigned y = (i+j*ncols_) % ncols_;
 		        point2d p(x,y);
-		       	std::cout << image(p).x_ << " " << image(p).y_ << "\t";
-		    }
-	     	std::cout << std::endl;
-	    }
-	    std::cout << std::endl << "------------------------" << std::endl;
-  	}
-
-	// Methode pour afficher image de fin
-	void affiche_final(image2d<int> image){
-  		int nrows_ = image.domain().get_max().x_ +1;
-	    int ncols_ = image.domain().get_max().y_ +1;
-
-	    std::cout << "Image du chemin pour traverser le labyrinth:" << std::endl;
-	    std::cout << "------------------------" << std::endl << std::endl;
-	    for(int j=0; j< nrows_; j++){
-	      	for(int i=0; i< ncols_; i++){
-		        unsigned x = (i+j*ncols_) / ncols_;
-		        unsigned y = (i+j*ncols_) % ncols_;
-		        point2d p(x,y);
-		        std::cout << image(p) << "\t";
+		       	std::cout << image_(p).x_ << " " << image_(p).y_ << "\t";
 		    }
 	     	std::cout << std::endl;
 	    }
@@ -92,9 +67,9 @@ public:
   	}
 
 private:
-	D domain_;
 	point2d fin_;
 	point2d debut_;
+	I& image_;
 };
 
 #endif
