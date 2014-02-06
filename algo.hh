@@ -14,7 +14,6 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 	typename T::domain_type box = input.domain();
 	const unsigned max = 4444; 
 	image2d<typename T::value_type> image(box);
-	image2d<point2d> imageTraceur(box);
 
 
 	typename T::p_iterator_type ite(box);
@@ -22,7 +21,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 	//On assigne à tous les points valide la valeur max
 	for (ite.start(); ite.is_valid(); ite.next()){
 		image(ite) = max;
-		traceur.init(ite, imageTraceur);
+		traceur.init(ite);
 	}
 
 	std::queue<point2d> q;
@@ -31,7 +30,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 	for(ite.start(); ite.is_valid(); ite.next()){
 		if(input(ite) == 2){
 			image(ite) = 0;
-			traceur.setDebut(ite,imageTraceur);
+			traceur.setDebut(ite);
 			n_ite.center_at(ite);
 
 			for(n_ite.start(); n_ite.is_valid(); n_ite.next()){
@@ -51,18 +50,12 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 		n_ite.center_at(p);
 		for(n_ite.start(); n_ite.is_valid(); n_ite.next()){
 			if(box.has(n_ite) and image(n_ite) == max){
-				traceur.follow(p, n_ite, imageTraceur);
+				traceur.follow(p, n_ite);
 				image(n_ite) = image(p) + 1;
 				q.push(n_ite);
 			}
 		}
 	}
-
-	traceur.affiche_coord(imageTraceur);
-	image2d<typename T::value_type> imageFinal = traceur.chemin(imageTraceur);
-	std::cout << "Image du chemin pour traverser le labyrinth:" << std::endl;
-	imageFinal.affiche(imageFinal);
-	// traceur.affiche2(traceur.chemin(imageTraceur));
 
 	return image;
 }
