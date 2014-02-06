@@ -39,8 +39,7 @@ public:
 		
 		while(p.x_ != -1 && p.y_ != -1){		
 			final(p) = 1;
-			p.x_ = image_(p).x_;
-			p.y_ = image_(p).y_;
+			p = image_(p);
 		}
 		
 		return final;
