@@ -59,26 +59,30 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 	}
 
 	traceur.affiche_coord(imageTraceur);
-	image2d<typename T::value_type> imageFinal = traceur.chemin(imageTraceur);
-	std::cout << "Image du chemin pour traverser le labyrinth:" << std::endl;
-	imageFinal.affiche(imageFinal);
-	// traceur.affiche2(traceur.chemin(imageTraceur));
+	// image2d<typename T::value_type> imageFinal = traceur.chemin(imageTraceur);
+	// std::cout << "Image du chemin pour traverser le labyrinth:" << std::endl;
+	// imageFinal.affiche(imageFinal);
+	traceur.affiche_final(traceur.chemin(imageTraceur));
 
 	return image;
 }
 
 struct Nope{
 	template <typename T>
-	void init(point2d pointInit, image2d<T>& image){}
+	void init(point2d pointInit, image2d<T> image){}
 	template <typename T>
-	void follow(point2d pointDepart, point2d pointArrive, image2d<T>& image){}
+	void follow(point2d pointDepart, point2d pointArrive, image2d<T> image){}
 	template <typename T>
-	void setDebut(point2d point,image2d<T>& image){}
+	void setDebut(point2d point,image2d<T> image){}
 	template <typename T>
-	image2d<int> chemin(image2d<T>& image){}
+	image2d<int> chemin(image2d<T> image){ 
+		image2d<int> image_(image.domain());
+		return image_;
+	}
 	template <typename T>
-	void affiche_coord(image2d<T>& image){}
-	// void affiche2(image2d<int> image){}
+	void affiche_coord(image2d<T> image){}
+	template <typename T>
+	void affiche_final(T image){}
 };
 
 template <typename T>

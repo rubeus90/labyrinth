@@ -7,7 +7,7 @@ template <typename D>
 
 class Traceur{
 public:
-	Traceur(D domain): domain_(domain), fin_(0,0), debut_(0,0){} //Obligatoire d'initialiser fin et debut
+	Traceur(D domain): domain_(domain), fin_(0,0), debut_(0,0) {} //Obligatoire d'initialiser fin et debut
 
 	template <typename T>
 	void init(point2d pointInit, image2d<T>& image){
@@ -72,24 +72,24 @@ public:
 	    std::cout << std::endl << "------------------------" << std::endl;
   	}
 
-	//Methode pour afficher image de fin
-	// void affiche2(image2d<int> image){
- //  		int nrows_ = image.domain().get_max().x_ +1;
-	//     int ncols_ = image.domain().get_max().y_ +1;
+	// Methode pour afficher image de fin
+	void affiche_final(image2d<int> image){
+  		int nrows_ = image.domain().get_max().x_ +1;
+	    int ncols_ = image.domain().get_max().y_ +1;
 
-	//     std::cout << "Image du chemin pour traverser le labyrinth:" << std::endl;
-	//     std::cout << "------------------------" << std::endl << std::endl;
-	//     for(int j=0; j< nrows_; j++){
-	//       	for(int i=0; i< ncols_; i++){
-	// 	        unsigned x = (i+j*ncols_) / ncols_;
-	// 	        unsigned y = (i+j*ncols_) % ncols_;
-	// 	        point2d p(x,y);
-	// 	        std::cout << image(p) << "\t";
-	// 	    }
-	//      	std::cout << std::endl;
-	//     }
-	//     std::cout << std::endl << "------------------------" << std::endl;
- //  	}
+	    std::cout << "Image du chemin pour traverser le labyrinth:" << std::endl;
+	    std::cout << "------------------------" << std::endl << std::endl;
+	    for(int j=0; j< nrows_; j++){
+	      	for(int i=0; i< ncols_; i++){
+		        unsigned x = (i+j*ncols_) / ncols_;
+		        unsigned y = (i+j*ncols_) % ncols_;
+		        point2d p(x,y);
+		        std::cout << image(p) << "\t";
+		    }
+	     	std::cout << std::endl;
+	    }
+	    std::cout << std::endl << "------------------------" << std::endl;
+  	}
 
 private:
 	D domain_;
