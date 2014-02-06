@@ -14,7 +14,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 	typename T::domain_type box = input.domain();
 	const unsigned max = 4444; 
 	image2d<typename T::value_type> image(box);
-	image2d<point2d> imageTraceur(6,5);
+	image2d<point2d> imageTraceur(box);
 
 
 	typename T::p_iterator_type ite(box);
@@ -38,7 +38,6 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 				if(box.has(n_ite) and (input(n_ite) == 1)){
 					std::cout << "" << std::endl;
 					q.push(ite);
-					// point2d pointArrive = n_ite;
 					break;
 				}
 				
@@ -59,15 +58,27 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 		}
 	}
 
-	traceur.affiche(imageTraceur);
-	traceur.affiche2(traceur.chemin(imageTraceur));
+	traceur.affiche_coord(imageTraceur);
+	image2d<typename T::value_type> imageFinal = traceur.chemin(imageTraceur);
+	std::cout << "Image du chemin pour traverser le labyrinth:" << std::endl;
+	imageFinal.affiche(imageFinal);
+	// traceur.affiche2(traceur.chemin(imageTraceur));
 
 	return image;
 }
 
 struct Nope{
-	void init(point2d point){}
-	void follow(point2d point1,point2d point2){}
+	template <typename T>
+	void init(point2d pointInit, image2d<T>& image){}
+	template <typename T>
+	void follow(point2d pointDepart, point2d pointArrive, image2d<T>& image){}
+	template <typename T>
+	void setDebut(point2d point,image2d<T>& image){}
+	template <typename T>
+	image2d<int> chemin(image2d<T>& image){}
+	template <typename T>
+	void affiche_coord(image2d<T>& image){}
+	void affiche2(image2d<int> image){}
 };
 
 template <typename T>

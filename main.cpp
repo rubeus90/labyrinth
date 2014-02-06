@@ -75,8 +75,8 @@ int main(){
 	Traceur<box2d> traceur(image2.domain());
 	image2d<int> image3 = compute_dmap__SPECIFIC(imageTruc, traceur);
 	//image2d<int> image3 = compute_dmap__SPECIFIC(imageTruc);
-	//std::cout << "Image sortie de l'algo:" << std::endl;
-	//image3.affiche(image3);
+	std::cout << "Image sortie de l'algo:" << std::endl;
+	image3.affiche(image3);
 
 	//parcour(image2, image3);
 }

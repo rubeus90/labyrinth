@@ -54,10 +54,11 @@ public:
 
 	//Methode pour afficher une image contenant des point2d
 	template <typename T>
-  	void affiche(image2d<T>& image){
+  	void affiche_coord(image2d<T>& image){
   		int nrows_ = image.domain().get_max().x_ +1;
 	    int ncols_ = image.domain().get_max().y_ +1;
 
+	    std::cout << "Image des coordonnees des points precedents:" << std::endl;
 	    std::cout << "------------------------" << std::endl << std::endl;
 	    for(int j=0; j< nrows_; j++){
 	      	for(int i=0; i< ncols_; i++){
@@ -76,6 +77,7 @@ public:
   		int nrows_ = image.domain().get_max().x_ +1;
 	    int ncols_ = image.domain().get_max().y_ +1;
 
+	    std::cout << "Image du chemin pour traverser le labyrinth:" << std::endl;
 	    std::cout << "------------------------" << std::endl << std::endl;
 	    for(int j=0; j< nrows_; j++){
 	      	for(int i=0; i< ncols_; i++){
