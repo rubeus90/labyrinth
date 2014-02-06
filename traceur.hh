@@ -31,7 +31,7 @@ public:
 	//Créé l'image solution
 	typename I::image_traceur_type chemin(){
 		//Création image de sorti
-		box2d box = image_.domain();
+		typename I::domain_type box = image_.domain();
 		image2d<int> final(box);
 		final.fill2d(final,0);
 
@@ -65,8 +65,7 @@ public:
   	}
 
 private:
-	point2d fin_;
-	point2d debut_;
+	point_type fin_, debut_;
 	I& image_;
 };
 
