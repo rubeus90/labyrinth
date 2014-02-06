@@ -35,7 +35,7 @@ public:
 		final.fill2d(final,0);
 
 		point2d p(fin_.x_,fin_.y_);	
-		
+
 		while(p.x_ != -1 && p.y_ != -1){		
 			final(p) = 1;
 			int x = image_(p).x_;
@@ -64,6 +64,8 @@ public:
 	     	std::cout << std::endl;
 	    }
 	    std::cout << std::endl << "------------------------" << std::endl;
+		std::cout << fin_.x_ << " " << fin_.y_ << std::endl;
+		std::cout << debut_.x_ << " " << debut_.y_ << std::endl;
   	}
 
 private:

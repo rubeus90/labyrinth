@@ -76,6 +76,7 @@ int main(){
 	std::cout << "Image if:" << std::endl;
 	imageTruc.affiche(imageTruc);
 	
+
 	//Traceur
 	Traceur<image2d<point2d> > traceur(image4);
 
