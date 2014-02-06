@@ -6,45 +6,45 @@
 #include "traceur.hh"
 
 
-void parcour(image2d<int>& depart, image2d<int>& traite){
-	std::cout << "Les coordonnees des points du chemin : " << std::endl;
+// void parcour(image2d<int>& depart, image2d<int>& traite){
+// 	std::cout << "Les coordonnees des points du chemin : " << std::endl;
 	
-	int x, y = 0;	
-	//extraire le coordonne de sorti
-	box2d box = depart.domain();
-	box2d_iterator<box2d> ite(box);
-	for (ite.start(); ite.is_valid(); ite.next()){  // marche
-		if(depart(ite)==3){
-			x = ite.getX();
-			y = ite.getY();
-			break;
-		}
-	}
-	std::cout << "x:" << x << " y: " << y << std::endl;
-	point2d p(x,y);
+// 	int x, y = 0;	
+// 	//extraire le coordonne de sorti
+// 	box2d box = depart.domain();
+// 	box2d_iterator<box2d> ite(box);
+// 	for (ite.start(); ite.is_valid(); ite.next()){  // marche
+// 		if(depart(ite)==3){
+// 			x = ite.getX();
+// 			y = ite.getY();
+// 			break;
+// 		}
+// 	}
+// 	std::cout << "x:" << x << " y: " << y << std::endl;
+// 	point2d p(x,y);
 
-	int i;
-	neighb2d_iterator n_ite;
-	for(i=traite(p); i>=0; i--){
-		n_ite.center_at(p);
+// 	int i;
+// 	neighb2d_iterator n_ite;
+// 	for(i=traite(p); i>=0; i--){
+// 		n_ite.center_at(p);
 		
-		for(n_ite.start(); n_ite.is_valid(); n_ite.next()){
+// 		for(n_ite.start(); n_ite.is_valid(); n_ite.next()){
 
-			if(traite(n_ite) +1 == traite(p)){
-				p = n_ite;
-				std::cout << "x:" << p.x_ << " y: " << p.y_ << std::endl;
-				break;
-			}
-		}
-	}
-}
+// 			if(traite(n_ite) +1 == traite(p)){
+// 				p = n_ite;
+// 				std::cout << "x:" << p.x_ << " y: " << p.y_ << std::endl;
+// 				break;
+// 			}
+// 		}
+// 	}
+// }
 
 int main(){
 	image2d<int> image2(6,5);
 	
 	image2.fill2d(image2, 0);
-	image2(point2d(0,0)) = 2;
-	image2(point2d(0,1)) = 1;
+	image2(point2d(0,1)) = 2;
+	// image2(point2d(0,1)) = 1;
 	image2(point2d(0,2)) = 1;
 	image2(point2d(0,3)) = 1;
 	image2(point2d(1,3)) = 1;

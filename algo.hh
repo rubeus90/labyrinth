@@ -38,7 +38,7 @@ image2d<typename T::value_type> compute_dmap__SPECIFIC(T& input, N traceur){
 				if(box.has(n_ite) and (input(n_ite) == 1)){
 					std::cout << "" << std::endl;
 					q.push(ite);
-					point2d pointArrive = n_ite;
+					// point2d pointArrive = n_ite;
 					break;
 				}
 				

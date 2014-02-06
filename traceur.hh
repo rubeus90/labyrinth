@@ -17,9 +17,9 @@ public:
 	//Methode qui sert a initialiser le premier
 	template <typename T>
 	void setDebut(point2d point,image2d<T>& image){
-		image(debut_)= point2d(-1,-1);
 		debut_.x_ = point.x_;
 		debut_.y_ = point.y_;
+		image(debut_)= point2d(-1,-1);
 	}
 
 	template <typename T>
