@@ -13,7 +13,6 @@ typename T::image_algo_type compute_dmap__SPECIFIC(T& input,N& traceur){
 
 	typename T::domain_type box = input.domain();
 	const unsigned max = 4444; 
-	// image2d<typename T::value_type> image(box);
 	typename T::image_algo_type image(box);
 
 	typename T::p_iterator_type ite(box);

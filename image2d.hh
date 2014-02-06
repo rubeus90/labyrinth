@@ -63,6 +63,7 @@ public:
     }
   }
 
+  //Afficher l'image dans le terminal
   void affiche(image2d<T>& image){
     unsigned min_x = domain_.get_min().x_;
     unsigned min_y = domain_.get_min().y_;
