@@ -10,10 +10,7 @@ struct superieur{
 	superieur(const T& x): x_(x){}
 
 	bool operator()(const T& i) const{
-		if(x_ < i)
-			return true;
-		else
-			return false;
+		return (x_ < i ) ? true : false;
 	}
 };
 
