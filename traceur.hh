@@ -29,7 +29,7 @@ public:
 	}
 
 	//Créé l'image solution
-	image2d<int> chemin(){
+	typename I::image_traceur_type chemin(){
 		//Création image de sorti
 		box2d box = image_.domain();
 		image2d<int> final(box);

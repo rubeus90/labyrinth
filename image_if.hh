@@ -12,6 +12,7 @@ public:
 	typedef typename domain_type::p_iterator_type p_iterator_type;
 	typedef typename I::image_algo_type image_algo_type;
 	typedef typename I::point_type point_type;
+	typedef typename I::image_traceur_type image_traceur_type;
 
 	image_if(I& i, F& f): i_(i), f_(f), domain_(i.domain(), f_) {}
 
